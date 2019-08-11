@@ -1,0 +1,74 @@
+﻿@model IEnumerable<sortingPersonName.Models.Person>
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="row">
+    <div class="col-md-4">
+        <h2>Unsorted person names</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @{int no = 1;}
+                @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @(no++)
+                        </td>
+                        <td>
+                            @(item.firstName+" "+item.lastName)
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+        <p><button class="btn btn-default" id="btn-sorting" >SORTING</button></p>
+    </div>
+    <div class="col-md-4">
+
+
+
+    </div>
+    <div class="col-md-4">
+        <h2>sorted person names</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        not yet sorted
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#btn-sorting').click(function () {
+            $.ajax({
+                url: "http://localhost:28805/hOME/onSorted",
+                success: function (res) {
+                    $('.table:eq(1)').html(res)
+                },
+            });
+        })
+    })
+</script>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<sortingPersonName.Models.Person>
+@{
+    Layout = null;
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @{int no = 1;}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(no++)
+                </td>
+                <td>
+                    @(item.firstName + " " + item.lastName)
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
